@@ -1,0 +1,15 @@
+*.tr0
+*.png
+*.docx
+*.doc
+*.st0
+*.ic0
+*.lis
+*.log
+*.bak
+*.pm
+.DS_Store
+*.pa0
+*.rar
+*.zip
+
