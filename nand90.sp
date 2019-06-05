@@ -6,13 +6,16 @@
 ********* Params*******
 .param			Lmin=90n
 +Vdd= 1.2V
-
++ Out_T_DLY = 2
++ PRD = 26.25
 .global	Vdd
 .temp	25
 ****** Sources ******
 VSupply	 Vs	0   DC		Vdd
-VinA	A	0   pulse  0  Vdd  2ns   100ps 100ps   15ns    30ns
-VinB	B	0   pulse  0  Vdd  2ns  100ps 100ps   23ns    50ns
+*VinA	A	0   pulse  0  Vdd  2ns   0ps 0ps   15ns    30ns
+*VinB	B	0   pulse  0  Vdd  2ns   0ps 0ps   23ns    50ns
+*VinA    A   0   DC     0
+*VinB    B   0   DC     0
 
 ***************************** NAND ****************************
 .SUBCKT Mynand inA inB GND NODE   AOUT
@@ -47,6 +50,10 @@ X1 A B 0 Vs out Mynand
 + targ V(out) val = '0.1*Vdd'  fall = 1
 
 .MEASURE highest_freq param = '1 /(t_rise + t_fall)'
+
+
+.MEASURE TRAN AVGpower avg Power
+
 
 .END
 
