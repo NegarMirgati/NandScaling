@@ -8,15 +8,16 @@
 ********* Params*******
 .param			Lmin=32n
 + Vdd= 0.9V
-+ Out_T_DLY = 1
-+ PRD = 16.40
++ Out_T_DLY = 2
++ PRD = 16.7
 
 .global	Vdd
 .temp	25
 ****** Sources ******
 VSupply	 Vs	0   DC		Vdd
-*VinA	A	0   pulse  0  Vdd  2ns  0ps 0ps   15ns    30ns
-*VinB	B	0   pulse  0  Vdd  2ns  0ps 0ps   23ns    50ns
+*VinB    B   0   DC     Vdd
+*VinA	A	0   pulse  0  Vdd  2ns  0ps 0ps   30ns    60ns
+
 *VinA    A   0   DC     0
 *VinB    B   0   DC     0
 
@@ -25,7 +26,7 @@ VSupply	 Vs	0   DC		Vdd
 .SUBCKT Mynand inA inB GND NODE   AOUT
 Mp3     AOUT     inB     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
 Mp4     AOUT     inA     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
-Mn5     AOUT     inA     mid     mid     nmos    l ='Lmin'    w ='2*Lmin'
+Mn5     AOUT     inA     mid     GND     nmos    l ='Lmin'    w ='2*Lmin'
 Mn6     mid      inB     GND     GND     nmos    l ='Lmin'    w ='2*Lmin'
 .ENDS Mynand
 
